@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <hr />
+        <div class="postContainer col-md-9">
+            <form class="postForm" #postForm="ngForm" (ngSubmit)="createPost()">
+                <div class="form-group">
+                    <div class="postHeading">Create Post</div>
+                    <div *ngIf="currentFile" class="progress">
+                        <div
+                          class="progress-bar progress-bar-info progress-bar-striped"
+                          role="progressbar"
+                          attr.aria-valuenow="{{ progress }}"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          [ngStyle]="{ width: progress + '%' }" >
+                          {{ progress }}%
+                        </div>
+                    </div>
+                    <label class="btn btn-default">
+                        <input *ngIf="!isLink" type="file" class="form-control" (change)="selectFile($event)" />
+                    </label>
+                    <div class="alert alert-light" role="alert">{{ message }}</div>
+                    <!-- <div class="card">
+                        <div class="card-header text-center">List of Files</div>
+                        <ul class="list-group list-group-flush" *ngFor="let file of fileDetails | async">
+                        <li class="list-group-item">
+                            <a href="{{ file.url }}">{{ file.name }}</a>
+                        </li>
+                        </ul>
+                    </div> -->
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select class="form-control" name="postType" [(ngModel)]="newPost.postType" (change)="selectPostType($event)">
+                            <option [ngValue]="null" disabled>-- Select Post Type --</option>
+                            <option *ngFor="let t of postTypes" [ngValue]="t.type">{{t.name}}</option>
+                        </select>
+                        <br>
+                        <div *ngIf="isLink" >
+                            <input type="text" id="link" #link="ngModel" class="form-control" name="link" [(ngModel)]="newPost.filelocation" maxlength="524288" placeholder="Enter a hyperlink..." required>
+                            <div [hidden]="link.valid || link.pristine" class="alert alert-danger">
+                                Hyperlink is required
+                            </div>
+                        </div>
+                        <br>
+                        <textarea class="caption-text" name="postcaption" [(ngModel)]="newPost.postcaption" placeholder="Type your caption..."></textarea>
+                    </div>
+                    <hr />
+                    <span>
+                        <div style="margin-top: 5px" class="float-right">
+                            <button (click)="refreshPost()" class="btn btn-outline-secondary mr-1"><i class="fa fa-close"></i> Discard</button>
+                            <button *ngIf="!isLink" type="submit" class="btn btn-outline-success" [disabled]="!selectedFiles" ><i class="fa fa-check"></i> Post</button>
+                            <button *ngIf="isLink" (click)="onPostForLink()" class="btn btn-outline-success"><i class="fa fa-check"></i> Post</button>
+                        </div>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

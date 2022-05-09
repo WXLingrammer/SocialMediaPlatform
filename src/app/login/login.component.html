@@ -1,0 +1,43 @@
+<div class="main-section">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header" style="text-align: center"><h4>Login</h4></div>
+                <div class="card-body">
+                    <form (ngSubmit)="login()" #loginForm="ngForm">
+                        <div class="form-group row">
+                            <label for="username" class="col-md-4 col-form-label text-md-right">Username<span class="required"></span></label>
+                            <div class="col-md-6">
+                                <input type="text" id="username" #username="ngModel" class="form-control" name="username" [(ngModel)]="user.username" maxlength="50" pattern="[A-Za-z0-9_]+" placeholder="Enter username" required autofocus>
+                                <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+                                    Username is required, cannot contain spaces
+                                </div>
+                            </div>
+                        </div>
+ 
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password<span class="required"></span></label>
+                            <div class="col-md-6">
+                                <input type="password" id="password" #password="ngModel" class="form-control" name="password" [(ngModel)]="user.password" maxlength="8" placeholder="Enter password" required>
+                                <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                                    Password is required, minimum 8 characters
+                                </div>
+                            </div>
+                        </div>
+ 
+                        <span class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary">
+                                Login
+                            </button>
+                            <span style="padding-left: 15px">New User? <a routerLink="/signUp">Sign Up</a></span>
+                        </span>
+                        <br>
+                        <div class="alert alert-danger" *ngIf='this.isError'>
+                            <p class="login-failed-text">Login Failed. Please check your credentials.</p>   
+                        </div>                      
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

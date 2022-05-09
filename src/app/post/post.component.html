@@ -1,0 +1,32 @@
+<!-- Display Posts-->
+<pagination-controls class="float-right" (pageChange)="next($event)"></pagination-controls>
+<div class="row post" *ngFor="let post of posts | paginate: pages">
+    <!-- Post Section-->
+    <div class="col-md-11">
+        <span class="small-text"> Posted by {{post.createdBy}} </span>
+        <span class="small-text"> . {{post.createdDate | dateAgo }}</span>
+        <div class="item">
+            <div *ngIf="post.postType.includes('image')">
+                <app-display-image [post]="post"></app-display-image>
+            </div>
+            <div *ngIf="post.postType.includes('video')">
+                <app-display-video [post]="post"></app-display-video>
+            </div>
+            <div *ngIf="post.postType.includes('href')">
+                <app-display-link [post]="post"></app-display-link>
+            </div>
+        </div>
+        <div>
+            <p class="caption-text center" [innerHtml]="post.postcaption"></p>
+        </div>
+        <hr />
+        <span>
+            <span class="small-text">{{post.viewcount}} Views </span>
+            <button class="btn btn-primary float-right" (click)="goToPost(post.postid)">
+                Read Post
+            </button>
+        </span>
+        <hr />
+    </div>
+</div>
+<pagination-controls class="float-right" (pageChange)="next($event)"></pagination-controls>

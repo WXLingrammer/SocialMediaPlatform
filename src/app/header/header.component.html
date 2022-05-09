@@ -1,0 +1,19 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="flex-grow-1">
+            <span class="header-text">
+                <img src="../../assets/images/digital-book-logo.jpg" width="50" height="50" class="center" alt="Digital Book Logo">
+                Digital Hub
+                <button class="btn btn-outline-primary float-right mr-1" *ngIf="authService.loginStatus==1" (click)="logout()">
+                    Logout
+                </button>
+                <button class="btn btn-outline-info float-right mr-1" *ngIf="authService.isAdmin" (click)="goToProfile()">
+                    Manage Accounts
+                </button>
+                <button class="btn btn-outline-secondary float-right mr-1" *ngIf="!authService.isAdmin && authService.loginStatus==1" (click)="goToMyProfile(this.currentUser.userId)">
+                    Edit Profile
+                </button>
+            </span>
+        </div>
+    </nav>
+</header>

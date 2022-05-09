@@ -1,0 +1,19 @@
+<div class="main-section">
+  <div class="container">
+    <div class="row">
+      <h3>Welcome {{name}}!</h3>
+      <div>
+          <button class="btn btn-outline-dark" (click)="goToCreatePost()">Create Post</button>
+      </div>
+      <hr />
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header text-center">Feeds</div>
+        </div>
+        <app-post [posts]="posts"></app-post>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+  </div>
+</div>

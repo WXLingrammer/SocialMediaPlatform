@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+      <hr />
+      <div class="col-md-9">
+        <div class="row post">
+          <div class="col-md-11">
+            <app-post [posts]="posts"></app-post>
+            <span>
+              <span class="small-text"> . Posted
+                <span class="small-text"> {{post.createdDate | dateAgo }} </span>
+                by              
+                <span class="small-text"> {{post.createdBy}} </span>
+              </span>
+            </span>
+            <div class="item">
+              <div *ngIf="post.postType.includes('image')">
+                  <app-display-image [post]="post"></app-display-image>
+              </div>
+              <div *ngIf="post.postType.includes('video')">
+                  <app-display-video [post]="post"></app-display-video>
+              </div>
+              <div *ngIf="post.postType.includes('href')">
+                <app-display-link [post]="post"></app-display-link>
+            </div>
+            </div>
+            <hr />
+            <div>
+              <p *ngIf='!this.editable' class="caption-text" name="postcaption" [(ngModel)]="post.postcaption"  [innerHtml]="post.postcaption"></p>
+              <textarea *ngIf='this.editable' class="caption-text" name="postcaption" [(ngModel)]="post.postcaption" [innerHtml]="post.postcaption" maxlength="2200"></textarea>
+            </div>
+          </div>
+        </div>
+        <span>
+          <div style="margin-top: 5px" class="float-right">
+            <button (click)="goToHome()" class="btn btn-primary mr-1"><i class="fa fa-home"></i> Back</button>
+            <button *ngIf='this.editable' (click)="updatePost(post.postid)" class="btn btn-outline-success mr-1"><i class="fa fa-check"></i> Update</button>
+            <button *ngIf='this.editable' (click)="deletePost(post.postid)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+          </div>
+      </span>
+      </div>
+    </div>
+</div>  

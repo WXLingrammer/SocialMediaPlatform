@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <hr />
+        <div class="formContainer col-md-9">
+            <form (ngSubmit)="onSubmit()" class="form-content">
+                <div class="form-group">
+                    <div class="text-center">Delete Account</div>
+                    <p class="text-center">Are you sure you want to delete {{user.name}}'s account?</p>
+                    <div style="margin-top: 5px" class="float-right">
+                        <button (click)="backToUserAccounts()" class="btn btn-secondary mr-1"><i class="fa fa-close"></i> Cancel</button>
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
